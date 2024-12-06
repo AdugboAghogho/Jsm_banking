@@ -7,7 +7,7 @@ import TotalBalanceBox from '@/components/TotalBalanceBox';
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
-  const loggedIn = { firstName: 'kelvin' }
+  const loggedIn = { firstName: 'Kelvin', lastName: 'AYO'}
   // const loggedIn = await getLoggedInUser();
   // const accounts = await getAccounts({ 
   //   userId: loggedIn.$id 
@@ -52,7 +52,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
       <RightSidebar 
         user={loggedIn}
         transactions={[]}
-        banks={[]}
+        banks={[{ currentBalance: 123.50 }, { currentBalance: 500.50 }]}
         // transactions={account?.transactions}
         // banks={accountsData?.slice(0, 2)}
       />
