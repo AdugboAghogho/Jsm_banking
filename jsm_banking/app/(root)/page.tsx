@@ -7,7 +7,7 @@ import TotalBalanceBox from '@/components/TotalBalanceBox';
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
-  const loggedIn = { firstName: 'Kelvin', lastName: 'AYO'}
+  const loggedIn = { firstName: 'Kelvin', lastName: 'AYO', email: 'adugboaghogho@gmail.com'}
   // const loggedIn = await getLoggedInUser();
   // const accounts = await getAccounts({ 
   //   userId: loggedIn.$id 
