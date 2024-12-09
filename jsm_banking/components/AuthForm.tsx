@@ -56,13 +56,14 @@ const AuthForm = ({ type }: { type: string }) => {
             city: data.city!,
             state: data.state!,
             postalCode: data.postalCode!,
-            dateOfBirth: data.dateOfBirth!,
+            dateOfBirth: data.dateOfBirth !,
             ssn: data.ssn!,
             email: data.email, 
             password: data.password
           }
 
-          const newUser = await signUp(userData);
+          // const newUser = await signUp(userData);
+          const newUser = await signUp(data);
 
           setUser(newUser);
         }
@@ -80,7 +81,7 @@ const AuthForm = ({ type }: { type: string }) => {
       } finally {
         setIsLoading(false);
       }
-    }
+    }  
 
   return (
     <section className="auth-form">

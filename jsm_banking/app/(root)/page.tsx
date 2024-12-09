@@ -3,12 +3,11 @@ import HeaderBox from '@/components/HeaderBox'
 import RightSidebar from '@/components/RightSidebar';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
 // import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
-// import { getLoggedInUser } from '@/lib/actions/user.actions';
+import { getLoggedInUser } from '@/lib/actions/user.actions';
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
-  const loggedIn = { firstName: 'Kelvin', lastName: 'AYO', email: 'adugboaghogho@gmail.com'}
-  // const loggedIn = await getLoggedInUser();
+  const loggedIn = await getLoggedInUser();
   // const accounts = await getAccounts({ 
   //   userId: loggedIn.$id 
   // })
