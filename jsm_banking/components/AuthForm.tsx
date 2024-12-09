@@ -56,14 +56,13 @@ const AuthForm = ({ type }: { type: string }) => {
             city: data.city!,
             state: data.state!,
             postalCode: data.postalCode!,
-            dateOfBirth: data.dateOfBirth !,
+            dateOfBirth: data.dateOfBirth!,
             ssn: data.ssn!,
-            email: data.email, 
+            email: data.email,
             password: data.password
           }
 
-          // const newUser = await signUp(userData);
-          const newUser = await signUp(data);
+          const newUser = await signUp(userData);
 
           setUser(newUser);
         }
@@ -72,7 +71,7 @@ const AuthForm = ({ type }: { type: string }) => {
           const response = await signIn({
             email: data.email,
             password: data.password,
-          }) 
+          })
 
           if(response) router.push('/')
         }
@@ -81,7 +80,7 @@ const AuthForm = ({ type }: { type: string }) => {
       } finally {
         setIsLoading(false);
       }
-    }  
+    }
 
   return (
     <section className="auth-form">
@@ -113,7 +112,6 @@ const AuthForm = ({ type }: { type: string }) => {
             </h1>
           </div>
       </header>
-
       {user ? (
         <div className="flex flex-col gap-4">
           {/* <PlaidLink user={user} variant="primary" /> */}
@@ -128,15 +126,12 @@ const AuthForm = ({ type }: { type: string }) => {
                     <CustomInput control={form.control} name='firstName' label="First Name" placeholder='Enter your first name' />
                     <CustomInput control={form.control} name='lastName' label="Last Name" placeholder='Enter your first name' />
                   </div>
-
                   <CustomInput control={form.control} name='address1' label="Address" placeholder='Enter your specific address' />
                   <CustomInput control={form.control} name='city' label="City" placeholder='Enter your city' />
-
                   <div className="flex gap-4">
                     <CustomInput control={form.control} name='state' label="State" placeholder='Example: NY' />
                     <CustomInput control={form.control} name='postalCode' label="Postal Code" placeholder='Example: 11101' />
                   </div>
-
                   <div className="flex gap-4">
                     <CustomInput control={form.control} name='dateOfBirth' label="Date of Birth" placeholder='YYYY-MM-DD' />
                     <CustomInput control={form.control} name='ssn' label="SSN" placeholder='Example: 1234' />

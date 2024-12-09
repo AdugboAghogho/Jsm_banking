@@ -1,45 +1,60 @@
-import React from 'react'
-import { FormControl, FormField, FormLabel, FormMessage } from './ui/form'
-import { Input } from './ui/input'
+import React from "react";
+import { FormControl, FormField, FormLabel, FormMessage } from "./ui/form";
+import { Input } from "./ui/input";
 
-import { Control, FieldPath } from 'react-hook-form'
-import { z } from 'zod'
-import { authFormSchema } from '@/lib/utils'
+import { Control, FieldPath } from "react-hook-form";
+import { z } from "zod";
+import { authFormSchema } from "@/lib/utils";
 
-const formSchema = authFormSchema('sign-up')
+// Define the schema
+const formSchema = authFormSchema("sign-up");
 
-interface CustomInput {
-  control: Control<z.infer<typeof formSchema>>,
-  name: FieldPath<z.infer<typeof formSchema>>,
-  label: string,
-  placeholder: string
+interface CustomInputProps {
+  control: Control<z.infer<typeof formSchema>>;
+  name: FieldPath<z.infer<typeof formSchema>>;
+  label: string;
+  placeholder: string;
 }
 
-const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
+const CustomInput = ({ control, name, label, placeholder }: CustomInputProps) => {
   return (
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState }) => (
         <div className="form-item">
-          <FormLabel className="form-label">
+          {/* Label */}
+          <FormLabel htmlFor={`form-${name}`} className="form-label">
             {label}
           </FormLabel>
+
           <div className="flex w-full flex-col">
+            {/* <Input 
+              placeholder={placeholder}
+              className="input-class"
+              type={name === 'password' ? 'password' : 'text'}
+              {...field}
+            /> */}
             <FormControl>
-              <Input 
+              <Input
+                id={`form-${name}`} // Ensure unique id
                 placeholder={placeholder}
                 className="input-class"
-                type={name === 'password' ? 'password' : 'text'}
+                type={name === "password" ? "password" : "text"}
+                aria-invalid={fieldState.invalid} // Accessibility
                 {...field}
               />
             </FormControl>
-            <FormMessage className="form-message mt-2" />
+
+            {/* Error Message */}
+            <FormMessage className="form-message mt-2">
+              {fieldState.error?.message}
+            </FormMessage>
           </div>
         </div>
       )}
     />
-  )
-}
+  );
+};
 
-export default CustomInput
+export default CustomInput;
