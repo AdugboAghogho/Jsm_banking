@@ -2,31 +2,40 @@
 
 import { cookies } from "next/headers";
 import { ID } from "node-appwrite";
-import { createAdminClient, createSessionClient } from "../appwrite";
-import { parseStringify } from "../utils";
+import { createAdminClient } from "../appwrite";
 
+export const signIn = async ({ email, password }: { email: string; password: string }) => {
+  try {
+    const { account } = await createAdminClient();
+    const session = await account.createEmailPasswordSession(email, password);
+    
+    cookies().set("appwrite-session", session.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
 
-export const signIn = async () => {
-  try{
-    // MUTATION ? Database
+    return { success: true };
   } catch (error) {
-    console.error('Error', error);
+    console.error('Sign in error:', error);
+    return { success: false, error: 'Invalid credentials' };
   }
-}
+};
 
 export const signUp = async (userData: SignUpParams) => {
   const { email, password, firstName, lastName } = userData;
 
-  try{
-    // CRAETE a user account
+  try {
     const { account } = await createAdminClient();
-
-    const newUserAccount = await account.create(
-      ID.unique(), 
-      email, 
-      password, 
+    
+    const newUser = await account.create(
+      ID.unique(),
+      email,
+      password,
       `${firstName} ${lastName}`
     );
+
     const session = await account.createEmailPasswordSession(email, password);
 
     cookies().set("appwrite-session", session.secret, {
@@ -36,18 +45,22 @@ export const signUp = async (userData: SignUpParams) => {
       secure: true,
     });
 
-    return parseStringify(newUserAccount);
+    return newUser;
+    
   } catch (error) {
-    console.error('Error', error);
+    console.error('Error creating user account:', error);
+    throw error;
   }
-}
+};
 
-
-export async function getLoggedInUser() {
+export const signOut = async () => {
   try {
-    const { account } = await createSessionClient();
-    return await account.get();
+    const { account } = await createAdminClient();
+    cookies().delete("appwrite-session");
+    await account.deleteSession('current');
+    return { success: true };
   } catch (error) {
-    return null;
+    console.error('Sign out error:', error);
+    return { success: false };
   }
-}
+};

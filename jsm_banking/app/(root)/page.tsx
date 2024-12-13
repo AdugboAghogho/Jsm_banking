@@ -7,7 +7,10 @@ import { getLoggedInUser } from '@/lib/actions/user.actions';
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
-  const loggedIn = await getLoggedInUser();
+  // const loggedIn = await getLoggedInUser();
+  const loggedIn = { firstName: 'Kelvin',  lastName: 'Keln', name: 'Kelvin', email: 'Kelvin@gmail.com'};
+
+
   // const accounts = await getAccounts({ 
   //   userId: loggedIn.$id 
   // })

@@ -1,3 +1,16 @@
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>
+      MyBanks
+    </div>
+  )
+}
+
+export default page
+
+
 // import BankCard from '@/components/BankCard';
 // import HeaderBox from '@/components/HeaderBox'
 // import { getAccounts } from '@/lib/actions/bank.actions';

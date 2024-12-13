@@ -1,3 +1,18 @@
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>
+      TransactionHistory
+    </div>
+  )
+}
+
+export default page
+
+
+
+
 // import HeaderBox from '@/components/HeaderBox'
 // import { Pagination } from '@/components/Pagination';
 // import TransactionsTable from '@/components/TransactionsTable';
