@@ -17,7 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-// import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
@@ -62,8 +62,7 @@ const AuthForm = ({ type }: { type: string }) => {
             password: data.password
           }
 
-          const newUser = await signUp(data);
-          // const newUser = await signUp(userData);
+          const newUser = await signUp(userData);
 
           setUser(newUser);
         }

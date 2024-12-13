@@ -3,6 +3,24 @@
 import { cookies } from "next/headers";
 import { ID } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../appwrite";
+import { parseStringify } from "../utils";
+
+// export const getUserInfo = async ({ userId }: getUserInfoProps) => {
+//   try {
+//     const { database } = await createAdminClient();
+
+//     const user = await database.listDocuments(
+//       DATABASE_ID!,
+//       USER_COLLECTION_ID!,
+//       [Query.equal('userId', [userId])]
+//     )
+
+//     return parseStringify(user.documents[0]);
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
 
 export const signIn = async ({ email, password }: { email: string; password: string }) => {
   try {
@@ -52,16 +70,45 @@ export const signUp = async (userData: SignUpParams) => {
   }
 };
 
-export const signOut = async () => {
+export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
 
-    cookies().delete("appwrite-session");
-    await account.deleteSession("current");
+    const user = await account.get()
 
-    return { success: true };
+    return parseStringify(user);
   } catch (error) {
-    console.error("Sign out error:", error);
-    return { success: false, error: "Unable to sign out. Please try again." };
+    console.log(error)
+    return null;
   }
-};
+}
+
+// export const signOut = async () => {
+//   try {
+//     const { account } = await createSessionClient();
+
+//     cookies().delete("appwrite-session");
+//     await account.deleteSession("current");
+
+//     return { success: true };
+//   } catch (error) {
+//     console.error("Sign out error:", error);
+//     return { success: false, error: "Unable to sign out. Please try again." };
+//   }
+// };
+
+
+export const logoutAccount = async () => {
+  try {
+    const { account } = await createSessionClient();
+
+    cookies().delete('appwrite-session');
+
+    await account.deleteSession('current');
+  } catch (error) {
+    return null;
+  }
+}
+
+
+
