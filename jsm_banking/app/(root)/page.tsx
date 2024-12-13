@@ -7,6 +7,7 @@ import { getLoggedInUser } from '@/lib/actions/user.actions';
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
+
   // const loggedIn = await getLoggedInUser();
   const loggedIn = { firstName: 'Kelvin',  lastName: 'Keln', name: 'Kelvin', email: 'Kelvin@gmail.com'};
 
@@ -30,6 +31,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
             type="greeting"
             title="Welcome"
             user={loggedIn?.firstName || 'Guest'}
+            // user={loggedIn?.name |  | 'Guest'}
             subtext="Access and manage your account and transactions efficiently."
           />
 
