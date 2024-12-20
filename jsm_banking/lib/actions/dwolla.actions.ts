@@ -3,7 +3,7 @@
 import { Client } from "dwolla-v2";
 
 const getEnvironment = (): "production" | "sandbox" => {
-  const environment = process.env.DWOLLA_ENV as string;
+  const environment = process.env.DWOLLA_ENV || "sandbox" as string;
 
   switch (environment) {
     case "sandbox":
@@ -19,8 +19,8 @@ const getEnvironment = (): "production" | "sandbox" => {
 
 const dwollaClient = new Client({
   environment: getEnvironment(),
-  key: process.env.DWOLLA_KEY as string,
-  secret: process.env.DWOLLA_SECRET as string,
+  key: process.env.DWOLLA_KEY || 'WONzkXguLy3Y99mc731t6ihG18c6hnF6IxdhACbbyUqjBBJRVU' as string,
+  secret: process.env.DWOLLA_SECRET || 'nA1yuxEWfVzTJ3VqH7zMnMiVrUDy0qusZCRkAfJLZFMDS7slj2' as string,
 });
 
 // Create a Dwolla Funding Source using a Plaid Processor Token
