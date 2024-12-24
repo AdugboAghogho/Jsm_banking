@@ -142,7 +142,9 @@ body{
   }
 
   .view-all-btn {
-    @apply text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700;
+    @apply text-14 rounded-[2rem] border border-gray-300 px-4 py-2.5 font-semibold text-gray-700;
+    @apply hover:bg-blue-200 hover:text-gray-900; /* Add hover effects */
+    @apply transition-colors duration-200 ease-out; /* Smooth transition */
   }
 
   .recent-transactions {
@@ -239,7 +241,7 @@ body{
 
   /* Bank Info */
   .bank-info {
-    @apply gap-[18px] flex p-4 transition-all border bg-blue-25 border-transparent;
+    @apply rounded-[25px] gap-[18px] flex p-4 transition-all border bg-blue-55 border-transparent;
   }
 
   /* Category Badge */
@@ -248,7 +250,7 @@ body{
   }
 
   .banktab-item {
-    @apply gap-[18px] border-b-2 flex px-2 sm:px-4 py-2 transition-all;
+    @apply rounded-[5rem] gap-[18px] border-b-2 flex px-2 sm:px-4 py-2 transition-all;
   }
 
   /* Mobile nav */

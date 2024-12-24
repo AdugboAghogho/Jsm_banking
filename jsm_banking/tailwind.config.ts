@@ -46,6 +46,7 @@ const config = {
         },
         blue: {
           25: "#F5FAFF",
+          55: "#e6f3f8",
           100: "#D1E9FF",
           500: "#2E90FA",
           600: "#1570EF",
