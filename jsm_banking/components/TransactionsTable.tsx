@@ -82,6 +82,7 @@ import {
                 </TableCell>
   
                 <TableCell className="pl-2 pr-10 max-md:hidden">
+                 {t.category}
                  {/* <CategoryBadge category={t.category} />  */}
                 </TableCell>
               </TableRow>
