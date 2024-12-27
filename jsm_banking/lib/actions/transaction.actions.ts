@@ -6,9 +6,13 @@ import { createAdminClient } from "../appwrite";
 import { parseStringify } from "../utils";
 
 const {
-  APPWRITE_DATABASE_ID: DATABASE_ID,
-  APPWRITE_TRANSACTION_COLLECTION_ID: TRANSACTION_COLLECTION_ID,
+  APPWRITE_DATABASE_ID,
+  APPWRITE_TRANSACTION_COLLECTION_ID,
 } = process.env;
+
+const DATABASE_ID = APPWRITE_DATABASE_ID || '67532b2000245f2349fc';
+const TRANSACTION_COLLECTION_ID = APPWRITE_TRANSACTION_COLLECTION_ID || '67532be300366c6e2f74';
+
 
 export const createTransaction = async (transaction: CreateTransactionProps) => {
   try {
