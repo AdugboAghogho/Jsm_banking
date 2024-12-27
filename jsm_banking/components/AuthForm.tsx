@@ -20,9 +20,24 @@ import { useRouter } from 'next/navigation';
 import { signIn, signUp } from '@/lib/actions/user.actions';
 import PlaidLink from './PlaidLink';
 
-const validateDateOfBirth = (dob: string): boolean => {
-  const regex = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD format
-  return regex.test(dob);
+const validateDateOfBirth = (dateOfBirth: string): boolean => {
+  if (typeof dateOfBirth !== 'string') {
+    return false;
+  }
+
+  // Match the YYYY-MM-DD format
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateRegex.test(dateOfBirth)) {
+    return false;
+  }
+
+  // Ensure it's a valid date
+  const date = new Date(dateOfBirth);
+  if (isNaN(date.getTime())) {
+    return false;
+  }
+
+  return true;
 };
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -44,13 +59,23 @@ const AuthForm = ({ type }: { type: string }) => {
     setIsLoading(true);
 
     try {
+
+      // Ensure dateOfBirth is not undefined
+      if (!data.dateOfBirth) {
+        alert("Date of Birth is required.");
+        setIsLoading(false);
+        return;
+      }
+      // Validate the dateOfBirth field
+      if (!validateDateOfBirth(data.dateOfBirth)) {
+        alert(
+          "Please use the correct format (YYYY-MM-DD, with '-' between your Date Of Birth)."
+        );
+        setIsLoading(false);
+        return;
+      }
+      
       if (type === 'sign-up') {
-        // Validate the dateOfBirth field
-        if (!validateDateOfBirth(data.dateOfBirth!)) {
-          alert('Please use the correct format (YYYY-MM-DD add '-' in between your Date Of Birth).');
-          setIsLoading(false);
-          return;
-        }
 
         const userData = {
           firstName: data.firstName!,

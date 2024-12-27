@@ -182,25 +182,46 @@ export const createBankAccount = async ({
   }
 }
 
+// export const createLinkToken = async (user: User) => {
+//   try {
+//     const tokenParams = {
+//       user: {
+//         client_user_id: user.$id
+//       },
+//       client_name: `${user.firstName} ${user.lastName}`,
+//       products: ['auth'] as Products[],
+//       language: 'en',
+//       country_codes: ['US'] as CountryCode[],
+//     }
+
+//     const response = await plaidClient.linkTokenCreate(tokenParams);
+    
+//     return parseStringify({ linkToken: response.data.link_token })
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
 export const createLinkToken = async (user: User) => {
   try {
+    // Create a link token PARAMS
     const tokenParams = {
-      user: {
-        client_user_id: user.$id
-      },
       client_name: `${user.firstName} ${user.lastName}`,
-      products: ['auth'] as Products[],
-      language: 'en',
-      country_codes: ['US'] as CountryCode[],
-    }
+      products: [Products.Auth, Products.Transactions],
 
+      country_codes: [CountryCode.Us],
+      language: 'en',
+      user: {
+        client_user_id: user.$id,
+      },
+    };
     const response = await plaidClient.linkTokenCreate(tokenParams);
-    
-    return parseStringify({ linkToken: response.data.link_token })
+    return parseStringify({linkToken: response.data.link_token});
   } catch (error) {
-    console.log(error);
+    console.error('Error creating link token:', error);
+    return null;
   }
-}
+};
 
 export const exchangePublicToken = async ({
 
