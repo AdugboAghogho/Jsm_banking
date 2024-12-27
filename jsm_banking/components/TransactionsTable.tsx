@@ -39,18 +39,18 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
 
   return (
     <Table>
-      <TableHeader className="bg-[#f9fafb]">
+      <TableHeader className="bg-white h-[4rem]">
         <TableRow>
-          <TableHead className="px-2">Transaction</TableHead>
-          <TableHead className="px-2">Amount</TableHead>
-          <TableHead className="px-2">Status</TableHead>
-          <TableHead className="px-2">Date</TableHead>
-          <TableHead className="px-2 max-md:hidden">Channel</TableHead>
-          <TableHead className="px-2 max-md:hidden ">Category</TableHead>
+          <TableHead className="px-2 font-bold">Transaction</TableHead>
+          <TableHead className="px-2 font-bold">Amount</TableHead>
+          <TableHead className="px-2 font-bold">Status</TableHead>
+          <TableHead className="px-2 font-bold">Date</TableHead>
+          <TableHead className="px-2 font-bold max-md:hidden">Channel</TableHead>
+          <TableHead className="px-2 font-bold max-md:hidden ">Category</TableHead>
         </TableRow>
       </TableHeader>
 
-      <TableBody className="bg-[#ffffffc2]">
+      <TableBody>
         {transactions.map((t: Transaction) => {
           // console.log("1",t);
           const status = getTransactionStatus(new Date(t.date));

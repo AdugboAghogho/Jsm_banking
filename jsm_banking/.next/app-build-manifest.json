@@ -1,21 +1,5 @@
 {
   "pages": {
-    "/(auth)/sign-up/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(auth)/sign-up/page.js"
-    ],
-    "/(auth)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(auth)/layout.js"
-    ],
-    "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
-    ],
     "/(root)/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -26,15 +10,21 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(root)/layout.js"
     ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
     "/(auth)/sign-in/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(auth)/sign-in/page.js"
     ],
-    "/(root)/transaction-history/page": [
+    "/(auth)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(root)/transaction-history/page.js"
+      "static/chunks/app/(auth)/layout.js"
     ]
   }
 }
