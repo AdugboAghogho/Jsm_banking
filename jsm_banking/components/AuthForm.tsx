@@ -59,23 +59,21 @@ const AuthForm = ({ type }: { type: string }) => {
     setIsLoading(true);
 
     try {
-
-      // Ensure dateOfBirth is not undefined
-      if (!data.dateOfBirth) {
-        alert("Date of Birth is required.");
-        setIsLoading(false);
-        return;
-      }
-      // Validate the dateOfBirth field
-      if (!validateDateOfBirth(data.dateOfBirth)) {
-        alert(
-          "Please use the correct format (YYYY-MM-DD, with '-' between your Date Of Birth)."
-        );
-        setIsLoading(false);
-        return;
-      }
-      
       if (type === 'sign-up') {
+          // Ensure dateOfBirth is not undefined
+        if (!data.dateOfBirth) {
+          alert("Date of Birth is required.");
+          setIsLoading(false);
+          return;
+        }
+        // Validate the dateOfBirth field
+        if (!validateDateOfBirth(data.dateOfBirth)) {
+          alert(
+            "Please use the correct format (YYYY-MM-DD, with '-' between your Date Of Birth)."
+          );
+          setIsLoading(false);
+          return;
+        }
 
         const userData = {
           firstName: data.firstName!,
@@ -166,7 +164,7 @@ const AuthForm = ({ type }: { type: string }) => {
               <CustomInput control={form.control} name="password" label="Password" placeholder="Enter your password" />
 
               <div className="flex flex-col gap-4">
-                <Button type="submit" disabled={isLoading} className="form-btn">
+                <Button type="submit" disabled={isLoading} className="form-btn rounded-[3rem]">
                   {isLoading ? (
                     <>
                       <Loader2 size={20} className="animate-spin" /> &nbsp; Loading...

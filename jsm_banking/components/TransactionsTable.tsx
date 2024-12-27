@@ -49,7 +49,8 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
           <TableHead className="px-2 max-md:hidden ">Category</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
+
+      <TableBody className="bg-[#ffffffc2]">
         {transactions.map((t: Transaction) => {
           // console.log("1",t);
           const status = getTransactionStatus(new Date(t.date));
@@ -59,9 +60,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
           const isCredit = t.type === "credit";
 
           return (
-            <TableRow key={t.id}
-             
-             >
+            <TableRow key={t.id} className={`${isDebit || amount[0] === '-' ? 'bg-[#FFFBFA]' : 'bg-[#F6FEF9]'} !over:bg-none !border-b-DEFAULT`}>
               <TableCell className="max-w-[250px] pl-2 pr-10">
                 <div className="flex items-center gap-3">
                   <h1 className="text-14 truncate font-semibold text-[#344054]">

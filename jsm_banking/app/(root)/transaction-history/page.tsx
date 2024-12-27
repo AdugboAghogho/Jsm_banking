@@ -61,11 +61,12 @@ const TransactionHistory = async ({ searchParams: { id, page }}:SearchParamProps
           <TransactionsTable 
             transactions={currentTransactions}
           />
-            {totalPages > 1 && (
-              <div className="my-4 w-full">
-                <Pagination totalPages={totalPages} page={currentPage} />
-              </div>
-            )}
+
+          {totalPages > 1 && (
+            <div className="my-4 w-full">
+              <Pagination totalPages={totalPages} page={currentPage} />
+            </div>
+          )}
         </section>
       </div>
     </div>
