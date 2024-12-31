@@ -225,12 +225,17 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
 //     console.error("An error occurred while getting the accounts:", error);
 //   }
 // };
-export const getTransactions = async ({accessToken}: getTransactionsProps) => {
+
+
+// Define a type for transactions
+
+
+// Use the type in the function
+export const getTransactions = async ({ accessToken }: getTransactionsProps): Promise<Transaction[]> => {
   let hasMore = true;
-  let transactions: any = [];
+  let transactions: Transaction[] = []; // Use the specific type here
 
   try {
-    // Iterate through each page of new transaction updates for item
     while (hasMore) {
       const response: TransactionsSyncResponse = await plaidClient.transactionsSync({
         access_token: accessToken,
@@ -239,7 +244,7 @@ export const getTransactions = async ({accessToken}: getTransactionsProps) => {
       const data = response.data;
 
       transactions = transactions.concat(
-        response.data.added.map((transaction) => ({
+        data.added.map((transaction) => ({
           id: transaction.transaction_id || 'unknown-id',
           name: transaction.name || 'Unknown Name',
           paymentChannel: transaction.payment_channel || 'Unknown Channel',
@@ -257,14 +262,13 @@ export const getTransactions = async ({accessToken}: getTransactionsProps) => {
       hasMore = data.has_more;
     }
 
-    if (transactions.length === 0) {
-      return parseStringify([]);
-    }
     return parseStringify(transactions);
   } catch (error) {
     console.error('An error occurred while getting the transactions:', error);
+    return [];
   }
 };
+
 
 // Get bank info
 export const getInstitution = async ({

@@ -7,12 +7,12 @@ import { z } from "zod";
 import { authFormSchema } from "@/lib/utils";
 
 // Define the schema
-const formSchema = authFormSchema("sign-up");
+type FormSchema = z.infer<ReturnType<typeof authFormSchema>>;
 
 
 interface CustomInputProps {
-  control: Control<z.infer<typeof formSchema>>;
-  name: FieldPath<z.infer<typeof formSchema>>;
+  control: Control<FormSchema>;
+  name: FieldPath<FormSchema>;
   label: string;
   placeholder: string;
 }
