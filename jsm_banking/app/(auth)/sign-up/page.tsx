@@ -1,5 +1,4 @@
 import AuthForm from '@/components/AuthForm'
-import { getLoggedInUser } from '@/lib/appwrite'
 
 const SignUp = async () => {
   
