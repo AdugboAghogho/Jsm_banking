@@ -1,14 +1,9 @@
 "use server";
 
 import {
-  ACHClass,
   CountryCode,
-  TransferAuthorizationCreateRequest,
-  TransferCreateRequest,
-  TransferNetwork,
-  TransferType,
 } from "plaid";
-
+import { TransactionsSyncResponse } from 'plaid'; // Adjust based on actual type
 import { plaidClient } from "../plaid";
 import { parseStringify } from "../utils";
 
@@ -237,7 +232,7 @@ export const getTransactions = async ({accessToken}: getTransactionsProps) => {
   try {
     // Iterate through each page of new transaction updates for item
     while (hasMore) {
-      const response = await plaidClient.transactionsSync({
+      const response: TransactionsSyncResponse = await plaidClient.transactionsSync({
         access_token: accessToken,
       });
 
