@@ -9,6 +9,7 @@ import { authFormSchema } from "@/lib/utils";
 // Define the schema
 const formSchema = authFormSchema("sign-up");
 
+
 interface CustomInputProps {
   control: Control<z.infer<typeof formSchema>>;
   name: FieldPath<z.infer<typeof formSchema>>;

@@ -24,10 +24,10 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
     await exchangePublicToken({
       publicToken: public_token,
       user,
-    })
+    });
 
     router.push('/');
-  }, [user]);
+  }, [user, router]); // Add 'router' to the dependency array
   
   const config: PlaidLinkOptions = {
     token,

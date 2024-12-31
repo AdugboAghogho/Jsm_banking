@@ -251,7 +251,7 @@ export const getTransactions = async ({accessToken}: getTransactionsProps) => {
             ? transaction.category[0]
             : 'Uncategorized',
           date: transaction.date || new Date().toISOString(),
-          image: transaction.logo_url || '',
+          image?: transaction.logo_url || '',
         }))
       );
       hasMore = data.has_more;
