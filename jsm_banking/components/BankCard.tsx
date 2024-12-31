@@ -12,9 +12,11 @@ const BankCard = ({ account, userName, showBalance = true }: CreditCardProps) =>
       <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className="bank-card md:min-w-[325px]">
         <div className="bank-card_content">
           <div>
-            <h1 className="text-16 font-semibold text-white">
+        <h1 className="text-16 font-semibold text-white">
               {userName}
-              {/* {account.name} */}
+            </h1>
+            <h1 className="text-16 font-semibold text-white">
+              {account.name}
             </h1>
             <p className="font-ibm-plex-serif font-black text-white">
               {formatAmount(account.currentBalance)}
@@ -24,7 +26,7 @@ const BankCard = ({ account, userName, showBalance = true }: CreditCardProps) =>
           <article className="flex flex-col gap-2">
             <div className="flex justify-between">
               <h1 className="text-12 font-semibold text-white">
-                {userName}
+                {account.name}
               </h1>
               <h2 className="text-12 font-semibold text-white">
               ●● / ●●
