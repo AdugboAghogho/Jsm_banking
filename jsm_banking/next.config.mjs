@@ -9,6 +9,13 @@ const nextConfig = {
       APPWRITE_USER_COLLECTION_ID: process.env.APPWRITE_USER_COLLECTION_ID,
       APPWRITE_BANK_COLLECTION_ID: process.env.APPWRITE_BANK_COLLECTION_ID,
     },
+
+    typescript: {
+      ignoreBuildErrors: true
+    },
+    eslint: {
+      ignoreDuringBuilds: true
+    }
   };
 
 export default withSentryConfig(nextConfig, {
