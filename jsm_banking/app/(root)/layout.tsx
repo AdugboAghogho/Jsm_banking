@@ -1,6 +1,6 @@
 import MobileNav from "@/components/MobileNav";
 import Sidebar from "@/components/Sidebar";
-import { getLoggedInUser, User } from "@/lib/actions/user.actions";
+import { getLoggedInUser, } from "@/lib/actions/user.actions";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -16,7 +16,7 @@ export default async function RootLayout({
 
   return (
     <main className="flex h-screen w-full font-inter">
-      <Sidebar user={loggedIn as User} />
+      <Sidebar user={loggedIn as user} />
 
       <div className="flex size-full flex-col">
         <div className="root-layout">
